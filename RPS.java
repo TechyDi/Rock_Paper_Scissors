@@ -3,14 +3,27 @@ import java.util.*;
 public class RPS {
 
     public static void main(String[] args) {
-        //INPUT USER
         Scanner sc = new Scanner(System.in);
-
+    
         System.out.println("\nWELCOME TO THE Rock_Paper_Scissors GAME");
+        System.out.println("How many rounds of Rock_Paper_Scissors would you like to play?");
+
+        int round = Integer.parseInt(sc.nextLine());
+        int x = 0;
+        while(x<round){
+            playRPS(sc);
+            x++;
+        }
+        
+    }
+
+    static void playRPS(Scanner sc){
+
+        //INPUT USER
 
         System.out.println("\nMake a move! (rock/paper/scissors)");
         String playerMove = sc.nextLine();
-
+        
         //COMPUTER INPUT
         Random random = new Random();
         int randomNum = random.nextInt(3);
@@ -29,7 +42,7 @@ public class RPS {
         System.out.println("Computer Choose "+ computerMove + "!");
 
         // RESULTS
-        if(playerMove.equals(computerMove)){
+        if(playerMove.equalsIgnoreCase(computerMove)){
             System.out.println("AWWWW ! It's A Draw.");
         }else if(playerWins(playerMove, computerMove)){
             System.out.println("HURRAY ! You Wins.");
@@ -40,13 +53,12 @@ public class RPS {
 
     //playerwins
     static boolean playerWins(String playerMove, String computerMove){
-        if(playerMove.equals("rock")){
+        if(playerMove.equalsIgnoreCase("rock")){
             return computerMove.equals("scisscors");
-        }else if (playerMove.equals("paper")){
+        }else if (playerMove.equalsIgnoreCase("paper")){
             return computerMove.equals("rock");
         }else{
             return computerMove.equals("paper");
         }
     }
-
 }
